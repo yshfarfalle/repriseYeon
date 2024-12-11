@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Orbit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>RepriseSYeon</title>
+
+</head>
+<body>
+<!-- header -->
+<header id="fixed-header"> <!--헤더 위치 고정 위한 id-->
+
+    <button class="pop" data-toast="toast1"><img src="img/pasta1.png"></button>
+    <button class="pop" data-toast="toast2"><img src="img/pasta2.png"></button>
+    <button class="pop" data-toast="toast3"><img src="img/pasta3.png"></button>
+    <button class="pop" data-toast="toast4"><img src="img/pasta4.png"></button>
+    <button class="pop" data-toast="toast5"><img src="img/pasta5.png"></button>
+    <button class="pop" data-toast="toast6"><img src="img/pasta6.png"></button>
+    <button class="pop" data-toast="toast7"><img src="img/pasta7.png"></button>
+    <button class="pop" data-toast="toast8"><img src="img/pasta8.png"></button>
+    <button class="pop" data-toast="toast9"><img src="img/pasta9.png"></button>
+
+</header>
+
+<div id="toast1" class="toast">
+    <div id="button-container">
+        <button class="close red"></button>
+        <button class="close yellow"></button>
+        <button class="full green"></button>
+        <div class="name">01. 지루한 일상</div>
+    </div>
+<div class="toast-content8">
+
+    <div class="box0_1"></div>
+    <div class="box1"></div>
+    <div class="box_0_1_2">
+        <input type="range" class="fast" min="2" max="20" step="2">
+    </div>
+
+    <script>     /* 1번 오리 지나가는 콘텐츠*/
+    const fast = document.querySelector('.fast')
+    const box1 = document.querySelector('.box1')
+
+        box1.style.animation = `gif 1s infinite steps(10), run ${fast.value}s linear infinite`;
+
+        fast.addEventListener('input', function() {
+            box1.style.animation = `gif 1s infinite steps(10), run ${fast.value}s linear infinite`;
+            console.log(fast.value);
+        });
+    </script>
+
+</div>
+</div>
+
+<!--2번 오리 오류 고쳐주기-->
+<div id="toast2" class="toast">
+
+    <div id="button-container2">
+        <button class="close red2"></button>
+        <button class="close yellow2"></button>
+        <button class="full green2"></button>
+        <div class="name">02. 프로그래밍 시작</div>
+
+    </div>
+    <div class="toast-content2">
+        <div class="box100"></div>
+        <button id="changeButton">HELP</button>
+        <button id="changeButton2">IGNORE</button>
+
+        <script>
+            // 버튼 클릭 이벤트 처리
+            document.getElementById("changeButton").addEventListener("click", function () {
+                const box100 = document.querySelector(".box100");
+                // 배경 이미지를 새로운 이미지로 변경
+                box100.style.background = "url('img/happy1-4-12.png') no-repeat";
+            });
+
+            document.getElementById("changeButton2").addEventListener("click", function () {
+                const box100 = document.querySelector(".box100");
+                // 배경 이미지를 새로운 이미지로 변경
+                box100.style.background = "url('img/sad1-1-12.png') no-repeat";
+            });
+        </script>
+    </div>
+</div>
+
+
+<!-- 3번 오리 깨우기-->
+
+<div id="toast3" class="toast">
+
+    <div id="button-container3">
+        <button class="close red3"></button>
+        <button class="close yellow3"></button>
+        <button class="full green3"></button>
+        <div class="name">03. 꿈꾸는 시간</div>
+
+    </div>
+
+    <div class="toast-content3">
+        <div id="wrap">
+
+            <div class="flip">
+                    <div class="front"><img src="img/sleepingduck8.png"></div>
+                    <div class="back"><img src="img/sleepingduck3.png"></div>
+                </div>
+        </div>
+
+        <div class="bed"><img src="img/bed.png"></div>
+        <div class="bed2"><img src="img/bedtwinkle.png"></div>
+
+    </div>
+</div>
+
+<script>
+    // Flip 요소 클릭 시 동작
+    document.querySelector('.flip').addEventListener('click', function () {
+        // 'rotateY(180deg)' 상태를 토글
+        this.style.transform = this.style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)';
+    });
+</script>
+
+<!-- 4번 오리 배경 변경-->
+<div id="toast4" class="toast">
+
+    <div id="button-container4">
+        <button class="close red4"></button>
+        <button class="close yellow4"></button>
+        <button class="full green4"></button>
+        <div class="name">04. 새로운 세상으로</div>
+
+    </div>
+
+    <div class="toast-content4">
+        <!-- 이미지 및 Range Bar 추가 -->
+        <div class="jump_duck"></div>
+        <img id="dynamic-image" src="img/backstage0.png" alt="dynamic" style="width: 451px; height: 301px; display: flex; margin: 10px auto;">
+        <input type="range" class="custom-range" min="1" max="100" value="1">
+        <span class="num"></span>
+    </div>
+</div>
+
+
+<script>
+    const range = document.querySelector('input.custom-range'); // range input
+    const num = document.querySelector('.num'); // span for displaying range value
+    const dynamicImage = document.getElementById('dynamic-image'); // 이미지 요소
+
+    const updatingImage = (value) => {
+        // Range 값에 따라 이미지 업데이트
+        if (value >= 84) {
+            dynamicImage.src = "img/backstage6.png";
+        } else if (value >= 70) {
+            dynamicImage.src = "img/backstage2.png";
+        } else if (value >= 56) {
+            dynamicImage.src = "img/backstage3.png";
+        } else if (value >= 42) {
+            dynamicImage.src = "img/backstage4.png";
+        } else if (value >= 28) {
+            dynamicImage.src = "img/backstage5.png";
+        } else if (value >= 14) {
+            dynamicImage.src = "img/backstage1.png";
+        } else {
+            dynamicImage.src = "img/backstage0.png";
+        }
+    };
+
+    // 초기값 설정
+    num.innerHTML = range.value;
+    updatingImage(range.value);
+
+    // 값 변경 이벤트
+    range.addEventListener('change', () => {
+        num.innerHTML = range.value; // Update the displayed number
+        updatingImage(range.value); // Update the image
+    });
+</script>
+
+
+<!--5번 오리옷입히기-->
+<div id="toast5" class="toast">
+
+    <div id="button-container5">
+        <button class="close red5"></button>
+        <button class="close yellow5"></button>
+        <button class="full green5"></button>
+        <div class="name">05. 일상 속 작은 즐거움</div>
+
+    </div>
+
+    <div class="toast-content5">
+        <div class="fiveback"></div>
+        <div class="fashionbox0"></div>
+        <div class="fashionbox"></div>
+        <div class="clear"></div>
+    </div>
+        <button id="changeButton01"><img src="img/heartblue.png"></button>
+        <button id="changeButton02"><img src="img/heartpink.png"></button>
+        <button id="changeButton03"><img src="img/heartorange.png"></button>
+        <button id="changeButton04"><img src="img/heartgreen.png"></button>
+
+
+        <script>
+
+            // 랜덤 색상 생성 함수
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            // fiveback의 배경색을 랜덤하게 변경하는 함수
+            function changeBackgroundColor() {
+                const fiveback = document.querySelector(".fiveback");
+                fiveback.style.backgroundColor = getRandomColor(); // 랜덤 색상 적용
+            }
+
+            // 일정 간격으로 랜덤 배경색 변경 (1초마다)
+            setInterval(changeBackgroundColor, 500); // 1000ms = 1초마다 배경색이 랜덤하게 변함
+
+
+            // 버튼 클릭 이벤트 처리
+            document.getElementById("changeButton01").addEventListener("click", function () {
+                const fashionbox = document.querySelector(".fashionbox");
+                // 배경 이미지를 새로운 이미지로 변경
+                fashionbox.style.background = "url('img/fashion01.png') no-repeat";
+            });
+            document.getElementById("changeButton02").addEventListener("click", function () {
+                const fashionbox = document.querySelector(".fashionbox");
+                // 배경 이미지를 새로운 이미지로 변경
+                fashionbox.style.background = "url('img/fashion02.png') no-repeat";
+            });
+            document.getElementById("changeButton03").addEventListener("click", function () {
+                const fashionbox = document.querySelector(".fashionbox");
+                // 배경 이미지를 새로운 이미지로 변경
+                fashionbox.style.background = "url('img/fashion03.png') no-repeat";
+            });
+            document.getElementById("changeButton04").addEventListener("click", function () {
+                const fashionbox = document.querySelector(".fashionbox");
+                // 배경 이미지를 새로운 이미지로 변경
+                fashionbox.style.background = "url('img/fashion04.png') no-repeat";
+            });
+
+
+    </script>
+</div>
+
+<div id="toast6" class="toast">
+
+    <div id="button-container6">
+        <button class="close red6"></button>
+        <button class="close yellow6"></button>
+        <button class="full green6"></button>
+        <div class="name">06. 아름다운 공연 예술</div>
+
+    </div>
+
+    <div class="toast-content">
+        <div class="theater">
+            <div class="happyhappyduck"></div>
+            <div class="img_shadow"></div>
+
+            <div class="curtain1"></div>
+            <div class="curtain2"></div>
+            <div class="sofafront"></div>
+            <div class="sofaback"></div>
+            <div class="sofacenterback"></div>
+            <div class="sofacenterfront"></div>
+            <div class="curtains"></div>
+
+            <div class="text-container6">
+                <!--추가 바람-->
+
+                <div class="text6">- O me! O life!</div>
+                <div class="text6">- Of the questions of these recurring,</div>
+                <div class="text6">- Of the endless trains of the faithless,</div>
+                <div class="text6">- Of cities fill'd with the foolish,</div>
+                <div class="text6">- Of myself forever reproaching myself,</div>
+                <div class="text6">- That the powerful play goes on, <br> and you may contribute a verse.</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="toast7" class="toast">
+
+    <div id="button-container7">
+        <button class="close red7"></button>
+        <button class="close yellow7"></button>
+        <button class="full green7"></button>
+        <div class="name">07. 미지의 세계를 향하여</div>
+
+    </div>
+
+    <div class="toast-content">
+        <div class="skyy">
+            <div class="butter1" id="butter"></div>
+            <div class="skyy_duck" id="ducksky"></div>
+            <div class="skyy_duck2" id="duck2sky"></div>
+            <div class="skyy_spark" id="spark"></div>
+            <div class="skyy_bubble" id="bubble"></div>
+            <div class="skyy_jelly" id="jelly"></div>
+        </div>
+
+        <script>
+            document.getElementById('butter').addEventListener('click', () => {
+                const ducksky = document.getElementById('ducksky');
+                const duck2sky = document.getElementById('duck2sky');
+
+                // duck 비활성화
+                ducksky.style.display = 'none';
+                duck2sky.style.display = 'block';
+
+                duck2sky.style.animation = 'none';
+
+                // 새 애니메이션 추가
+                setTimeout(() => {
+                    //duck.style.animation = ''; // 기존 애니메이션 스타일 복구
+                    duck2sky.style.transform = 'translateX(-20px) translateY(-260px)  rotate(-30deg)' ; // 오리의 새로운 움직임 정의
+                }, 10); // 10ms 후 애니메이션 재설정
+
+                setTimeout(() => {
+
+                    duck2sky.style.transform = 'translateX(0)'; // 원래 위치로 복귀
+
+                    // duck2 비활성화
+                    setTimeout(() => {
+                        duck2sky.style.display = 'none';
+
+                        // duck 활성화
+                        ducksky.style.display = 'block';
+                    }, 1800); // duck2 복귀 후 활성화 전환
+
+                }, 1800); // 0.5초 뒤 복귀
+
+            });
+        </script>
+
+
+    </div>
+</div>
+
+<!-- 8번 오리 수영 물고기-->
+<div id="toast8" class="toast">
+
+    <div id="button-container8">
+        <button class="close red8"></button>
+        <button class="close yellow8"></button>
+        <button class="full green8"></button>
+        <div class="name">08. 신선한 경험</div>
+
+    </div>
+
+    <div class="toast-content">
+        <div class="sea">
+            <div class="fish1" id="fish"></div>
+            <div class="fish1_2" id="fish2"></div>
+            <div class="fish1_3" id="fish3"></div>
+            <div class="fish1_4" id="fish4"></div>
+
+            <div class="swim_duck" id="duck"></div>
+            <div class="swim_duck2" id="duck2"></div>
+            <div class="swim_duck3" id="duck3"></div>
+            <div class="swim_duck4" id="duck4"></div>
+            <div class="swim_duck5" id="duck5"></div>
+
+            <div class="swim_spark" ></div>
+            <div class="swim_bubble" ></div>
+            <div class="swim_jelly" ></div>
+            <div class="swim_pado" id="pado"></div>
+
+
+        </div>
+
+        <script>
+                    document.getElementById('fish').addEventListener('click', () => {
+                        const duck = document.getElementById('duck');
+                        const duck2 = document.getElementById('duck2');
+
+                        // duck 비활성화
+                        duck.style.display = 'none';
+                duck2.style.display = 'block';
+
+                duck2.style.animation = 'none';
+
+                // 새 애니메이션 추가
+                setTimeout(() => {
+                    //duck.style.animation = ''; // 기존 애니메이션 스타일 복구
+                    duck2.style.transform = 'translateX(-100px) translateY(100px) rotateY(10deg)' ; // 오리의 새로운 움직임 정의
+                }, 10); // 10ms 후 애니메이션 재설정
+                // duck.style.transform = 'translateX(-100px) translateY(100px)'; // 오리의 움직임 정의
+
+                setTimeout(() => {
+
+                    duck2.style.transform = 'translateX(0)'; // 원래 위치로 복귀
+
+                    // duck2 비활성화
+                    setTimeout(() => {
+                        duck2.style.display = 'none';
+
+                        // duck 활성화
+                        duck.style.display = 'block';
+                    }, 600); // duck2 복귀 후 활성화 전환
+
+                }, 600); // 0.5초 뒤 복귀
+
+            });
+        </script>
+        <script>
+            document.getElementById('fish2').addEventListener('click', () => {
+                const duck = document.getElementById('duck');
+                const duck3 = document.getElementById('duck3');
+
+                // duck 비활성화
+                duck.style.display = 'none';
+                duck3.style.display = 'block';
+
+                duck3.style.animation = 'none';
+
+                // 새 애니메이션 추가
+                setTimeout(() => {
+                    //duck.style.animation = ''; // 기존 애니메이션 스타일 복구
+                    duck3.style.transform = 'translateX(-80px) translateY(-20px) rotateY(10deg)' ; // 오리의 새로운 움직임 정의
+                }, 10); // 10ms 후 애니메이션 재설정
+                // duck.style.transform = 'translateX(-100px) translateY(100px)'; // 오리의 움직임 정의
+
+                setTimeout(() => {
+
+                    duck3.style.transform = 'translateX(0)'; // 원래 위치로 복귀
+
+                    // duck2 비활성화
+                    setTimeout(() => {
+                        duck3.style.display = 'none';
+
+                        // duck 활성화
+                        duck.style.display = 'block';
+                    }, 600); // duck2 복귀 후 활성화 전환
+
+                }, 600); // 0.5초 뒤 복귀
+
+            });
+        </script>
+        <script>
+            document.getElementById('fish3').addEventListener('click', () => {
+                const duck = document.getElementById('duck');
+                const duck4 = document.getElementById('duck4');
+
+                // duck 비활성화
+                duck.style.display = 'none';
+                duck4.style.display = 'block';
+
+                duck4.style.animation = 'none';
+
+                // 새 애니메이션 추가
+                setTimeout(() => {
+                    //duck.style.animation = ''; // 기존 애니메이션 스타일 복구
+                    duck4.style.transform = 'translateX(-180px) translateY(-20px) rotateY(10deg)' ; // 오리의 새로운 움직임 정의
+                }, 10); // 10ms 후 애니메이션 재설정
+                // duck.style.transform = 'translateX(-100px) translateY(100px)'; // 오리의 움직임 정의
+
+                setTimeout(() => {
+
+                    duck4.style.transform = 'translateX(0)'; // 원래 위치로 복귀
+
+                    // duck2 비활성화
+                    setTimeout(() => {
+                        duck4.style.display = 'none';
+
+                        // duck 활성화
+                        duck.style.display = 'block';
+                    }, 600); // duck2 복귀 후 활성화 전환
+
+                }, 600); // 0.5초 뒤 복귀
+
+            });
+        </script>
+
+        <script>
+            document.getElementById('fish4').addEventListener('click', () => {
+                const duck = document.getElementById('duck');
+                const duck5 = document.getElementById('duck5');
+
+                // duck 비활성화
+                duck.style.display = 'none';
+                duck5.style.display = 'block';
+
+                duck5.style.animation = 'none';
+
+                // 새 애니메이션 추가
+                setTimeout(() => {
+                    //duck.style.animation = ''; // 기존 애니메이션 스타일 복구
+                    duck5.style.transform = 'translateX(-180px) translateY(40px) rotateY(10deg)' ; // 오리의 새로운 움직임 정의
+                }, 10); // 10ms 후 애니메이션 재설정
+                // duck.style.transform = 'translateX(-100px) translateY(100px)'; // 오리의 움직임 정의
+
+                setTimeout(() => {
+
+                    duck5.style.transform = 'translateX(0)'; // 원래 위치로 복귀
+
+                    // duck2 비활성화
+                    setTimeout(() => {
+                        duck5.style.display = 'none';
+
+                        // duck 활성화
+                        duck.style.display = 'block';
+                    }, 600); // duck2 복귀 후 활성화 전환
+
+                }, 600); // 0.5초 뒤 복귀
+
+            });
+        </script>
+
+    </div>
+</div>
+<!--9번 3D 오리 회전-->
+<div id="toast9" class="toast">
+
+    <div id="button-container9">
+        <button class="close red9"></button>
+        <button class="close yellow9"></button>
+        <button class="full green9"></button>
+        <div class="name">09. 완전한 나로 가는 길</div>
+
+    </div>
+
+    <div class="toast-content9">
+        <div class="dsky">
+        <div id="container3d">
+            <!--몸-->
+            <div class="container0">
+                <div class="box0 front0"></div>
+                <div class="box0 back0"></div>
+                <div class="box0 top0"></div>
+                <div class="box0 bottom0"></div>
+                <div class="box0 left0"></div>
+                <div class="box0 right0"></div>
+            </div>
+            <!--머리-->
+            <div class="container13">
+                <div class="box13 front13"></div>
+                <div class="box13 back13"></div>
+                <div class="box13 top13"></div>
+                <div class="box13 bottom13"></div>
+                <div class="box13 left13"></div>
+                <div class="box13 right13"></div>
+            </div>
+            <!--입-->
+            <div class="container2">
+                <div class="box2 front2"></div>
+                <div class="box2 back2"></div>
+                <div class="box2 top2"></div>
+                <div class="box2 bottom2"></div>
+                <div class="box2 left2"></div>
+                <div class="box2 right2"></div>
+            </div>
+            <!--입-->
+            <div class="container3">
+                <div class="box3 front3"></div>
+                <div class="box3 back3"></div>
+                <div class="box3 top3"></div>
+                <div class="box3 bottom3"></div>
+                <div class="box3 left3"></div>
+                <div class="box3 right3"></div>
+            </div>
+            <!--날개1-->
+            <div class="container4">
+                <div class="box4 front4"></div>
+                <div class="box4 back4"></div>
+                <div class="box4 top4"></div>
+                <div class="box4 bottom4"></div>
+                <div class="box4 left4"></div>
+                <div class="box4 right4"></div>
+            </div>
+            <!--날개2-->
+            <div class="container5">
+                <div class="box5 front5"></div>
+                <div class="box5 back5"></div>
+                <div class="box5 top5"></div>
+                <div class="box5 bottom5"></div>
+                <div class="box5 left5"></div>
+                <div class="box5 right5"></div>
+            </div>
+            <!--발1-->
+            <div class="container6">
+                <div class="box6 front6"></div>
+                <div class="box6 back6"></div>
+                <div class="box6 top6"></div>
+                <div class="box6 bottom6"></div>
+                <div class="box6 left6"></div>
+                <div class="box6 right6"></div>
+            </div>
+            <!--발2-->
+            <div class="container7">
+                <div class="box7 front7"></div>
+                <div class="box7 back7"></div>
+                <div class="box7 top7"></div>
+                <div class="box7 bottom7"></div>
+                <div class="box7 left7"></div>
+                <div class="box7 right7"></div>
+            </div>
+            <!--눈1-->
+            <div class="container8">
+                <div class="box8 front8"></div>
+                <div class="box8 back8"></div>
+                <div class="box8 top8"></div>
+                <div class="box8 bottom8"></div>
+                <div class="box8 left8"></div>
+                <div class="box8 right8"></div>
+            </div>
+            <!--눈2-->
+            <div class="container9">
+                <div class="box9 front9"></div>
+                <div class="box9 back9"></div>
+                <div class="box9 top9"></div>
+                <div class="box9 bottom9"></div>
+                <div class="box9 left9"></div>
+                <div class="box9 right9"></div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+    const fulls = document.querySelectorAll('li')
+    const full = document.querySelector('.full')
+
+    fulls.forEach((full, index) => {
+        full.addEventListener('click', () => {
+
+            screen.style.animation = 'large 1s forwards'
+        })
+    })
+
+    // 지정된 색상 목록
+    const colors = ["#9A99D0", "#E33292", "#3978B2", "#FB8176", "#658CAF"];
+    let currentColorIndex = 0; // 현재 색상의 인덱스
+
+    // 배경색을 지정된 색상으로 변경하는 함수
+    function changeBackgroundColor() {
+        const dsky = document.querySelector(".dsky");
+        dsky.style.backgroundColor = colors[currentColorIndex]; // 현재 색상 적용
+
+        // 색상 배열의 인덱스를 1씩 증가시키고, 마지막 색상에 도달하면 다시 첫 번째 색상으로 돌아감
+        currentColorIndex = (currentColorIndex + 1) % colors.length;
+    }
+
+    // 일정 간격으로 배경색 변경 (1초마다)
+    setInterval(changeBackgroundColor, 1000); // 1000ms = 1초마다 배경색이 변함
+
+        document.addEventListener("DOMContentLoaded", function () {
+        // 모든 pop 버튼과 toast 요소를 가져옵니다.
+        const popButtons = document.querySelectorAll(".pop");
+        const closeButtons = document.querySelectorAll(".close");
+        const fullButtons = document.querySelectorAll(".full");
+
+        let zIndexCounter = 2000; // 초기 z-index 값 설정
+
+
+            // pop 버튼 클릭 이벤트
+        popButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const targetToastId = button.getAttribute("data-toast");
+            const targetToast = document.getElementById(targetToastId);
+
+        if (targetToast) {
+            targetToast.style.zIndex = zIndexCounter++; // z-index를 동적으로 증가
+            targetToast.classList.add("active"); // toast 활성화
+            targetToast.classList.add("fadeIn"); // fadeIn 애니메이션 추가 (예시로 사용)
+
+
+        }
+    });
+    });
+
+        // close 버튼 클릭 이벤트
+        closeButtons.forEach(button => {
+        button.addEventListener("click", function () {
+        const parentToast = button.closest(".toast");
+        if (parentToast) {
+            parentToast.classList.remove("active"); // toast 비활성화
+            parentToast.classList.remove("expanded");
+
+            parentToast.style.zIndex = "-100"; // z-index 초기화
+
+
+        }
+    });
+
+
+            fullButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const parentToast = button.closest(".toast"); // 해당 full 버튼의 부모 toast 요소 가져오기
+
+                    if (parentToast) {
+                        // 모든 toast 요소를 가져와 반복 처리
+                        document.querySelectorAll(".toast").forEach(toast => {
+                            if (toast !== parentToast) {
+                                // 현재 클릭된 toast가 아니면 expanded 클래스 제거
+                                toast.classList.remove("expanded");
+                                toast.style.zIndex = "-100"; // z-index 초기화
+
+                            }
+                        });
+
+                        // 확장된 toast의 z-index를 가장 앞으로 설정
+                        parentToast.style.zIndex = zIndexCounter++;
+                        parentToast.classList.add("expanded"); // 확장 클래스 추가
+
+
+                    }
+                });
+            });
+        });
+        });
+</script>
+
+<div class="toggle">
+    <label>
+        <input type="radio" name="mode" value="light" checked>
+        <span class="light">Light<img src="img/sun.png" alt="Sun Icon" width="40" height="40"></span>
+
+    </label>
+    <label>
+        <input type="radio" name="mode" value="dark">
+        <span class="dark">Dark<img src="img/moon.png" alt="Sun Icon" width="40" height="40"></span>
+    </label>
+</div>
+
+<script>
+    /* 모든 li 요소(연도를 나타내는 항목들)를 선택 */
+    const toggle = document.querySelector('.toggle');
+    const lightRadio = document.querySelector('input[value="light"]');
+    const darkRadio = document.querySelector('input[value="dark"]');
+    const toasts = document.querySelectorAll('.toast'); // 모든 .toast 요소 선택
+    const buttonContainer = document.getElementById('button-container');
+    const buttonContainer2 = document.getElementById('button-container2');
+    const buttonContainer3 = document.getElementById('button-container3');
+    const buttonContainer4 = document.getElementById('button-container4');
+    const buttonContainer5 = document.getElementById('button-container5');
+    const buttonContainer6 = document.getElementById('button-container6');
+    const buttonContainer7 = document.getElementById('button-container7');
+    const buttonContainer8 = document.getElementById('button-container8');
+    const buttonContainer9 = document.getElementById('button-container9');
+
+    toggle.addEventListener('change', () => {
+        if (lightRadio.checked) {
+            document.body.style.backgroundColor = '#ccc9dc'; // 라이트 모드
+            document.body.style.color = '#000000'; // 텍스트 색상
+
+            // 모든 toast 요소의 스타일을 기본값으로 복원
+            toasts.forEach(toast => {
+                toast.style.backgroundColor = ''; // 기본 배경 복원
+                toast.style.color = ''; // 기본 텍스트 색상 복원
+            });
+
+            // 모든 버튼 컨테이너 배경색을 라이트 모드 색상으로 설정
+            buttonContainer.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer2.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer3.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer4.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer5.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer6.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer7.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer8.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer9.style.backgroundColor = 'lightGrey'; // 다크 모드의 버튼 컨테이너 배경색
+
+
+        } else if (darkRadio.checked) {
+            document.body.style.backgroundColor = '#0c1821'; // 다크 모드
+            document.body.style.color = '#dddddd'; // 텍스트 색상
+
+            // 모든 toast 요소의 스타일을 다크 모드로 변경
+            toasts.forEach(toast => {
+                toast.style.backgroundColor = '#000000'; // 다크 모드 배경색
+                toast.style.color = '#ffffff'; // 다크 모드 텍스트 색상
+            });
+
+            // 모든 버튼 컨테이너 배경색을 다크 모드 색상으로 설정
+            buttonContainer.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer2.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer3.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer4.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer5.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer6.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer7.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer8.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            buttonContainer9.style.backgroundColor = '#363434'; // 다크 모드의 버튼 컨테이너 배경색
+            
+        }
+    });
+    function updateZIndex(toast) {
+        // 모든 toast 요소를 선택
+        const allToasts = document.querySelectorAll('.toast');
+
+        // 현재 가장 큰 z-index 값 찾기
+        let maxZIndex = 0;
+        allToasts.forEach(toastElement => {
+            const zIndex = window.getComputedStyle(toastElement).zIndex;
+            // z-index 값이 'auto'인 경우를 처리
+            if (zIndex !== 'auto') {
+                maxZIndex = Math.max(maxZIndex, parseInt(zIndex, 10));
+            }
+        });
+
+        // 클릭된 toast의 z-index를 가장 큰 z-index보다 1 크게 설정
+        toast.style.zIndex = maxZIndex + 1;
+    }
+
+    document.getElementById('button-container').addEventListener('click', () => {
+        const toast1 = document.getElementById('toast1');
+        updateZIndex(toast1);
+    });
+
+    document.getElementById('button-container2').addEventListener('click', () => {
+        const toast2 = document.getElementById('toast2');
+        updateZIndex(toast2);
+    });
+
+    document.getElementById('button-container3').addEventListener('click', () => {
+        const toast3 = document.getElementById('toast3');
+        updateZIndex(toast3);
+    });
+
+    document.getElementById('button-container4').addEventListener('click', () => {
+        const toast4 = document.getElementById('toast4');
+        updateZIndex(toast4);
+    });
+
+    document.getElementById('button-container5').addEventListener('click', () => {
+        const toast5 = document.getElementById('toast5');
+        updateZIndex(toast5);
+    });
+
+    document.getElementById('button-container6').addEventListener('click', () => {
+        const toast6 = document.getElementById('toast6');
+        updateZIndex(toast6);
+    });
+    document.getElementById('button-container7').addEventListener('click', () => {
+        const toast7 = document.getElementById('toast7');
+        updateZIndex(toast7);
+    });
+    document.getElementById('button-container8').addEventListener('click', () => {
+        const toast8 = document.getElementById('toast8');
+        updateZIndex(toast8);
+    });
+    document.getElementById('button-container9').addEventListener('click', () => {
+        const toast9 = document.getElementById('toast9');
+        updateZIndex(toast9);
+    });
+</script>
+
+<div class="clear"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,2034 @@
+/* 모든 요소에 대해 기본 패딩, 마진, 박스 크기 계산을 리셋 */
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Orbit", serif;
+}
+
+
+/* body 요소의 배경색을 설정 */
+body {
+    /*background: #ccc9dc;*/
+    background-image: url("img/mainback.png");
+    background-size: cover; /* 비율을 유지하면서 화면을 꽉 채우도록 */
+    /*background-position: center center; !* 배경 이미지를 가운데 정렬 *!*/
+    background-repeat: no-repeat; /* 배경 이미지가 반복되지 않도록 설정 */
+
+    color: #000000;
+}
+
+.toggle{
+    position:absolute;
+    bottom:20px;
+    right:10px;
+    /*transform:translateX(-50%);*/
+    z-index: 100000; /* 다른 요소보다 위에 오도록 설정 */
+}
+
+.toggle input[type="radio"] {
+    display: none;
+}
+.toggle label {
+    cursor:pointer;
+}
+.toggle span {
+    display: inline-block;
+    padding:10px 20px;
+    border-radius: 20px;
+    background:#ddd;
+    color: #555;
+    font-size: 16px;
+    margin: 0 5px;
+}
+
+.toggle input[type="radio"]:checked ~ span {
+    background: #333;
+    color: #fff;
+}
+
+ul {
+    position: absolute; /* 목록을 화면에서 원하는 위치에 정확하게 배치하기 위해 절대 위치 지정 */
+    top: 400px; /* 목록이 상단에서 100px 떨어지도록 설정 */
+    left: 20%; /* 화면의 가로 중간에 위치하도록 설정 */
+    list-style: none; /* 기본 목록 기호를 없앰 */
+    border-left: 5px solid #7d8597; /* 목록의 왼쪽에 5px 두께의 검은색 선 추가 */
+}
+
+li {
+    display:none;
+    position: relative; /* 위치를 목록 내에서 상대적으로 조정 */
+    font-weight: bold; /* 글자를 굵게 표시 */
+    transition: all 1.5s ease-out; /* 모든 변화를 1.5초 동안 부드럽게 적용 */
+}
+
+/* 홀수 번째 항목(li)의 왼쪽 여백 설정 */
+li:nth-child(odd) {
+    left: 30%; /* 왼쪽으로 50px 이동 */
+    padding-top: 20px;
+    padding-bottom: 300px;
+    text-align:left;
+}
+
+/* 짝수 번째 항목(li)의 왼쪽 여백 설정 */
+li:nth-child(even) {
+    left: -20%; /* 왼쪽으로 -100px 이동 (오른쪽으로 이동) */
+    padding-top: 300px;
+    text-align:center;
+
+}
+
+/* 클래스가 'show'일 때 li에 적용되는 애니메이션 */
+li.show {
+    animation: show 0.5s ease-in-out forwards, filterEffect 0.6s ease-in-out forwards; /* 0.5초 동안 위에서 아래로 애니메이션 적용 */
+}
+
+/* 'show' 애니메이션 키프레임 정의 */
+@keyframes show {
+    0% { display:none; transform: translateY(50px); } /* 처음에는 불투명도 0, 50px 아래에서 시작 */
+    100% { display: block; transform: translateY(0); } /* 끝날 때는 불투명도 1, 원래 위치 */
+}
+@keyframes filterEffect {
+    0% {
+        filter: brightness(20%);
+    }
+    100% {
+        filter: brightness(100%);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+
+/*---------------------------------toast 기능--------------------------------*/
+
+.toast {
+    display:none;
+    width:95%;
+    height:50%;
+    background: #dddddd;
+    font-size:20px;
+    position: fixed; /* 창을 화면 내에서 고정 위치에 나타나도록 설정 */
+    border: 1px solid gray; /* 1px 두께의 검은 실선 */
+    /*border-bottom-left-radius: 10px;*/
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+#toast1{
+    margin-top: 35px;
+    margin-left: 2%;
+
+
+}
+#toast2{
+    margin-top: 65px;
+    margin-left: 4%;
+
+}
+#toast3{
+    margin-top: 105px;
+    margin-left: 0;
+
+
+}
+#toast4{
+    margin-top: 135px;
+    margin-left: 3%;
+
+}
+#toast5{
+    margin-top: 180px;
+    margin-left: 1%;
+
+}
+
+#toast6{
+    margin-top: 210px;
+    margin-left: 4%;
+}
+#toast7{
+    margin-top: 240px;
+    margin-left: 5%;
+
+}
+#toast8{
+    margin-top: 270px;
+    margin-left: 2%;
+
+}
+#toast9{
+    margin-top: 300px;
+    margin-left: 0;
+
+}
+
+.toast.active {
+    display:block
+}
+.toast-content{
+    margin-top: 120px;
+
+}
+.toast-content3{
+    margin-top: 170px;
+}
+.toast-content4{
+    display: flex;              /* Flexbox 활성화 */
+    justify-content: center;    /* 가로 가운데 정렬 */
+    align-items: center;        /* 세로 가운데 정렬 (필요 시) */
+    flex-direction: column;     /* 세로로 정렬 (버튼과 박스가 위아래로 배치됨) */
+
+}
+
+.toast-content2{
+    margin-top: 120px;
+    display: flex;              /* Flexbox 활성화 */
+    justify-content: center;    /* 가로 가운데 정렬 */
+    align-items: center;        /* 세로 가운데 정렬 (필요 시) */
+    flex-direction: column;     /* 세로로 정렬 (버튼과 박스가 위아래로 배치됨) */
+}
+.toast-content5{
+    margin-top: 120px;
+    display: flex;              /* Flexbox 활성화 */
+    /*
+    justify-content: center;    !* 가로 가운데 정렬 *!
+    */
+    align-items: center;        /* 세로 가운데 정렬 (필요 시) */
+    flex-direction: column;     /* 세로로 정렬 (버튼과 박스가 위아래로 배치됨) */
+}
+.toast-content8{
+    margin-top: 120px;
+    display: flex;              /* Flexbox 활성화 */
+    /*
+    justify-content: center;    !* 가로 가운데 정렬 *!
+    */
+    align-items: center;        /* 세로 가운데 정렬 (필요 시) */
+    flex-direction: column;     /* 세로로 정렬 (버튼과 박스가 위아래로 배치됨) */
+}
+.toast-content9{
+    margin-top: 120px;
+    display: flex;              /* Flexbox 활성화 */
+    align-items: center;        /* 세로 가운데 정렬 (필요 시) */
+    flex-direction: column;     /* 세로로 정렬 (버튼과 박스가 위아래로 배치됨) */
+}
+#changeButton {
+    position: absolute;
+    margin-right: 100px;
+    margin-top:400px;
+}
+#changeButton2 {
+    position: absolute;
+    margin-left: 100px;
+    margin-top:400px;
+}
+#green, #green2, #green3, #green4, #green5, #green6, #green7, #green8, #green9 {
+    background-color: #28a745; /* 녹색 */
+}
+
+#yellow, #yellow2, #yellow3, #yellow4, #yellow5, #yellow6, #yellow7, #yellow8, #yellow9 {
+    background-color: #ffc107; /* 노란색 */
+}
+
+#red, #red2, #red3, #red4, #red5, #red6, #red7, #red8, #red9 {
+    background-color: #dc3545; /* 빨간색 */
+
+}
+
+button.full{
+    margin-left: 10px;
+    margin-top:10px;
+    text-align: right;
+    padding: 6px 6px;
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+button.close {
+    margin-left: 10px;
+    margin-top:10px;
+    text-align: right;
+    padding: 6px 6px;
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+
+}
+button.full{
+    margin-left: 10px;
+    margin-top:10px;
+    text-align: right;
+    padding: 6px 6px;
+    border: none;
+    border-radius: 50%;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+#button-container, #button-container2,#button-container3,#button-container4,#button-container5,#button-container6,#button-container7,#button-container8,#button-container9 {
+    display: flex;
+    align-items: center; /* 버튼 수직 중앙 정렬 */
+    width: 100%; /* 전체 폭 사용 */
+    padding-bottom: 10px;
+    background-color: lightgray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.name {
+    flex-grow: 1; /* 이름 부분이 남는 공간을 차지하게 */
+    text-align: center; /* 텍스트 가로 가운데 정렬 */
+    font-size: 17px; /* 필요시 폰트 크기 설정 */
+    /*margin-top: 6px;*/
+}
+.red {
+    background-color: red;
+}
+.red2 {
+    background-color: red;
+}
+.red3 {
+    background-color: red;
+}
+.red4 {
+    background-color: red;
+}
+.red5 {
+    background-color: red;
+}
+.red6 {
+    background-color: red;
+}
+.red7 {
+    background-color: red;
+}
+.red8 {
+    background-color: red;
+}
+.red9 {
+    background-color: red;
+}
+.yellow {
+    background-color: #ffc107;
+}
+.yellow2 {
+    background-color: #ffc107;
+}
+.yellow3 {
+    background-color: #ffc107;
+}
+.yellow4 {
+    background-color: #ffc107;
+}
+.yellow5 {
+    background-color: #ffc107;
+}
+.yellow6 {
+    background-color: #ffc107;
+}
+.yellow7 {
+    background-color: #ffc107;
+}
+.yellow8 {
+    background-color: #ffc107;
+}
+.yellow9 {
+    background-color: #ffc107;
+}
+
+.green {
+    background-color: #28a745;
+}
+.green2 {
+    background-color: #28a745;
+}
+.green3 {
+    background-color: #28a745;
+}
+.green4 {
+    background-color: #28a745;
+}
+.green5 {
+    background-color: #28a745;
+}
+.green6 {
+    background-color: #28a745;
+}
+.green7 {
+    background-color: #28a745;
+}
+.green8 {
+    background-color: #28a745;
+}
+.green9 {
+    background-color: #28a745;
+}
+
+
+.toast {
+    transition: display 0.3s ease, transform 0.3s ease;
+    transform: translateY(-10px); /* 살짝 위로 이동 */
+}
+
+.toast.active {
+    display:block;
+    transform: translateY(0); /* 정상 위치로 복귀 */
+}
+
+/* 확장 상태 */
+.expanded {
+
+    transition: all 0.5s ease; /* 부드러운 애니메이션 */
+
+    width: 100% !important;
+    height: 100% !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+
+}
+
+/* --------------------------------------1번 콘텐츠 -------------------------------------*/
+body {
+    overflow: hidden;
+}
+.box0_1{
+    position:absolute;
+    top:50px;
+    /*left:50px;*/
+    width:2281px;
+    height:275px;
+    background:url('img/1backdark.png') no-repeat;
+    background-size:cover;
+}
+
+.box_0_1_2{
+    position:absolute;
+    top:330px;
+    z-index: 5;
+}
+.box1 {
+    position:absolute;
+    top:140px;
+    left:50px;
+    width:207px;
+    height:185px;
+    background:url('img/run.png') no-repeat;
+    background-size:cover;
+    animation:gif 1s infinite steps(10), run 10s linear infinite;
+}
+@keyframes gif {
+    100% { background-position: -2075px 0;}
+}
+@keyframes run {
+    0% {left:0;}
+    100% {left:100%;}
+}
+
+/* 전체 Range Bar 스타일 */
+input.fast {
+    -webkit-appearance: none; /* 기본 스타일 제거 */
+    width: 400px;
+    height: 8px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    /*margin: 20px 10px; !* 변경된 여백 *!*/
+}
+
+/* 슬라이더 Thumb */
+input.fast::-webkit-slider-thumb {
+    -webkit-appearance: none; /* 기본 스타일 제거 */
+    width: 20px;
+    height: 20px;
+    background: dimgrey;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin-top: 0;
+}
+
+input.fast::-webkit-slider-thumb:hover {
+    transform: scale(1.3); /* Hover 효과 */
+
+}
+
+/* 슬라이더 Track */
+input.fast::-webkit-slider-runnable-track {
+    border-radius: 5px;
+    background: linear-gradient(90deg, grey, black );
+}
+
+/* ---------------------------------2번 콘텐츠 -------------------------------*/
+
+#changeButton {
+    background-color: darkseagreen; /* 초록색 배경 */
+    padding: 5px 15px; /* 버튼 안쪽 여백 */
+    border-radius: 10px; /* 라운딩 효과 */
+    font-size: 16px; /* 글자 크기 */
+    color: white; /* 글자 색상 */
+    cursor: pointer; /* 포인터 커서 표시 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 글자 그림자 */
+    transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
+}
+#changeButton2 {
+    background-color: palevioletred; /* 빨간색 배경 */
+    padding: 5px 15px; /* 버튼 안쪽 여백 */
+    border-radius: 10px; /* 라운딩 효과 */
+    font-size: 16px; /* 글자 크기 */
+    color: white; /* 글자 색상 */
+    cursor: pointer; /* 포인터 커서 표시 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* 글자 그림자 */
+    transition: background-color 0.3s ease; /* 배경색 변화 애니메이션 */
+}
+#changeButton:hover {
+    background-color: forestgreen; /* 호버 시 짙은 초록색 */
+    border-color: darkgreen; /* 호버 시 테두리 색상 */
+
+}
+#changeButton2:hover {
+    background-color: firebrick; /* 호버 시 짙은 빨간색 */
+    border-color: crimson; /* 호버 시 테두리 색상 */
+}
+
+button.no-hover img{
+    margin: 10px;
+}
+
+button.no-hover img:hover {
+    transform: none; /* hover 시 크기 변화 없게 설정 */
+}
+
+.box100 {
+    position:absolute;
+    top:50px;
+
+    background:url('img/happy1-4-12.png') no-repeat;
+    background-size:cover;
+    /*
+    animation:gif 1s infinite steps(10), run 10s linear infinite;
+    */
+}
+@keyframes gif2 {
+    100% { background-position: -5401px 0;}
+}
+@keyframes run2 {
+    0% {left:0;}
+    100% {left:100%;}
+}
+.box100 {
+    /* box의 너비는 2400px의 스프라이트 시트 전체에서 8개의 프레임을 나누어 각 프레임의 너비로 설정 */
+    width:calc(5401px / 12); /* 2400px을 8로 나눈 값 = 300px */
+    height:303px; /* box의 높이는 고정된 300px로 설정 */
+    background:url('img/sad1-1-12.png') no-repeat; /* 배경 이미지로 스프라이트 시트인 'butterfly.png'를 사용 */
+
+    animation: chang 1.5s infinite alternate steps(12);
+}
+
+@keyframes chang {
+    100% {background-position: -5401px 0;}
+}
+
+/*---------------------------------------------3번 콘텐츠-------------------------------*/
+
+#wrap {
+    position:absolute;
+    /*top:120px;*/
+    left:50%;
+    transform:translate(-50%, -50%);
+    z-index: 10;
+}
+.bed{
+    position:absolute;
+    /*top:120px;*/
+    left:50%;
+    transform:translate(-50%, -50%);
+}
+.bed2{
+    position:absolute;
+    /*top:120px;*/
+    left:50%;
+    animation: bedMotion2 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transform:translate(-50%, -50%);
+}
+@keyframes bedMotion2 {
+    0% {
+        transform: translate(-50%, -51%) rotateY(0); /* 원래 위치 */
+    }
+    50% {
+        transform: translate(-51%, -50%) rotateY(30deg); /* 회전 및 원래 위치 유지 */
+    }
+    100% {
+        transform: translate(-50%, -51%) rotateY(0); /* 원래 위치로 복귀 */
+    }
+}
+
+.flip {
+    width:465px;
+    height:308px;
+    transition: all 1s;
+
+    transform-style: preserve-3d;
+}
+.flip > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width:100%;
+    height:100%;
+}
+
+
+.front:hover {
+    /*transform: scale(1.1); !* 살짝 확대 *!*/
+    filter: brightness(0.7); /* 색상 어두워짐 (밝기 70%로 조정) */
+
+    z-index: 2; /* 확대 시 다른 요소 위로 올라오게 설정 */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer;
+
+}
+.back {
+    /*
+    background: pink;
+    */
+    transform:rotateY(180deg) translateZ(3px);
+}
+
+/*---------------------------------------------4번 콘텐츠-------------------------------*/
+
+.num {
+    font-size: 12px; /* 폰트 크기를 작게 설정 */
+    color: #333; /* 텍스트 색상(선택 사항) */
+}
+
+.jump_duck {
+    position: absolute;
+    top: 220px;
+    width: 132px;
+    height: 124px;
+    display:block;
+    background: url('img/jumpduck.png') no-repeat;
+    background-size: cover;
+    animation: jumpMotion 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 오리 애니메이션 */
+@keyframes jumpMotion {
+    0% {
+        transform: translateY(0) rotateX(30deg);
+    }
+    70% {
+        transform: translateY(-80px) rotateZ(30deg); /* 위로 살짝 이동 */
+    }
+
+    100% {
+        transform: translateY(0) rotateX(30deg); /* 원래 위치로 복귀 */
+    }
+}
+
+
+/* 전체 Range Bar 스타일 */
+input.custom-range {
+    -webkit-appearance: none; /* 기본 스타일 제거 */
+    width: 400px;
+    height: 8px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    /*margin: 20px 10px; !* 변경된 여백 *!*/
+}
+
+/* 슬라이더 Thumb */
+input.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none; /* 기본 스타일 제거 */
+    width: 20px;
+    height: 20px;
+    background: dimgrey;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    margin-top: 0;
+}
+
+input.custom-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2); /* Hover 효과 */
+
+}
+
+/* 슬라이더 Track */
+input.custom-range::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, black, mediumpurple, pink, steelblue, lightgreen, orange, hotpink);
+
+}
+
+
+/*---------------------------------------------5번 콘텐츠-------------------------------*/
+
+body {
+    overflow: hidden;
+}
+.fiveback {
+    position:absolute;
+    top: 200px;
+    left:50%;
+    width:451px;
+    height:301px;
+    background: lightslategray;
+    transform:translate(-50%, -50%);
+    transition: background-color 0.5s ease; /* 배경색이 1초 동안 부드럽게 변화하도록 설정 */
+
+}
+
+
+.fashionbox {
+    position:absolute;
+    width:161px;
+    height:161px;
+    background:url('img/fashion000.png') no-repeat;
+    background-size:cover;
+    /*
+    animation:gif 1s infinite steps(10), run 10s linear infinite;
+    */
+}
+.fashionbox0{
+    position:absolute;
+    width:161px;
+    height:161px;
+    background:url('img/fashion00.png') no-repeat;
+    background-size:cover;
+
+}
+
+button {
+    background: none; /* 배경 제거 */
+    border: none; /* 테두리 제거 */
+    padding: 0; /* 버튼 내부 여백 제거 */
+    margin: 0; /* 버튼 외부 여백 제거 */
+    outline: none; /* 포커스 시 테두리 제거 */
+    cursor: pointer; /* 클릭 가능한 커서 표시 */
+}
+
+button img {
+    display: block; /* 이미지 주위에 여백 제거 */
+}
+#changeButton01{
+    position: absolute; /* 위치 기준 설정 */
+    top:100px;
+    left: 50%; /* 컨테이너 가로 중앙 */
+    transform: translateX(-100px) translateY(20px); /* 가로 중앙에서 왼쪽으로 20px 이동 */
+    width:50px;
+    height:50px;
+}
+#changeButton02{
+    position: absolute; /* 위치 기준 설정 */
+    top:100px;
+    left: 50%; /* 컨테이너 가로 중앙 */
+    transform: translateX(-30px); /* 가로 중앙에서 왼쪽으로 20px 이동 */
+    width:50px;
+    height:50px;
+}
+#changeButton03{
+    position: absolute; /* 위치 기준 설정 */
+    top:100px;
+    left: 50%; /* 컨테이너 가로 중앙 */
+    transform: translateX(30px); /* 가로 중앙에서 왼쪽으로 20px 이동 */
+    width:50px;
+    height:50px;
+}
+#changeButton04{
+    position: absolute; /* 위치 기준 설정 */
+    top:100px;
+    left: 50%; /* 컨테이너 가로 중앙 */
+    transform: translateX(80px) translateY(40px); /* 가로 중앙에서 왼쪽으로 20px 이동 */
+    width:50px;
+    height:50px;
+}
+
+/* 호버 시 크기 확대 */
+button img:hover {
+    transform: scale(1.4) rotate(5deg);; /* 크기를 1.4배로 확대 */
+}
+
+
+
+/*---------------------------------------------6번 콘텐츠-------------------------------*/
+.theater {
+    position:absolute;
+    top:200px;
+    left:50%;
+    width:451px;
+    height:301px;
+    background: #5D1F61;
+    transform:translate(-50%, -50%);
+}
+
+.theater .happyhappyduck {
+    position:absolute;
+    bottom:35px;
+    /*left:calc((500px - 160px) / 2);*/
+    left:150px;
+    width:147px;
+    height:172px;
+    background:url('img/duckk.png') no-repeat;
+    animation: jump 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 4;
+}
+
+
+@keyframes jump {
+
+    0% { transform: scaleY(0.8); }
+    100% { transform: scaleY(1); }
+
+    0% {bottom : 60px;}
+    100% { bottom : 120px;}
+}
+
+
+
+.sofafront{
+
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:451px;
+    height:301px;
+    transform:translate(-50%, -50%);
+
+    background:url('img/sofafront.png') no-repeat;
+    animation: sofamove2 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 5;
+}
+
+.sofaback{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:451px;
+    height:301px;
+    transform:translate(-50%, -50%);
+
+    background:url('img/sofaback.png') no-repeat;
+    animation: sofamove2 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 0;
+}
+.curtains{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:451px;
+    height:301px;
+    transform:translate(-50%, -50%);
+
+    background:url('img/curtains.png') no-repeat;
+    animation: curtainmove 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 7;
+}
+.sofacenterback{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:451px;
+    height:301px;
+    transform:translate(-50%, -50%);
+
+    background:url('img/sofacenterback.png') no-repeat;
+    animation: sofamove1 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 0;
+}
+.sofacenterfront{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:451px;
+    height:301px;
+    transform:translate(-50%, -50%);
+
+    background:url('img/sofacenterfront.png') no-repeat;
+    animation: sofamove1 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 4;
+}
+.theater .img_shadow {
+    position:absolute;
+    bottom:60px;
+    left:170px;
+    width:120px;
+    height:50px;
+    background:rgba(0, 0, 0, 5);
+    border-radius: 50%;
+    transform:scale(1);
+    animation : shadow 0.8s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 3;
+
+}
+@keyframes shadow {
+    0% {transform: scale(1);background-color: rgba(0, 0, 0, .4);}
+    100% {transform:scale(.6);background-color: rgba(0, 0, 0, .1);}
+}
+@keyframes curtainmove {
+    /*0% {transform: scale(1);}*/
+    /*100% {transform:scale(.6);}*/
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes sofamove1 {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(0.6); }
+
+    0% { scale : 100%;}
+    100% { scale : 96%;}
+}
+@keyframes sofamove2 {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(0.3); }
+
+    /*0% { scale : 96%;}*/
+    /*100% { scale : 100%;}*/
+}
+@keyframes flow2 {
+    0% {opacity:0;}
+    5% {opacity: 1; bottom:172px; left:36%;}
+    80% {opacity: 1;}
+    100% {opacity:0; bottom:342px; left:23.3%;}
+}
+@keyframes flow3 {
+    0% {opacity:0;}
+    5% {opacity: 1; bottom:172px; right:30.33%;}
+    80% {opacity: 1;}
+    100% {opacity:0; bottom:342px; right:28px;}
+}
+@keyframes flow4 {
+    0% {opacity:0;}
+    5% {opacity: 1; bottom:172px; right:36%;}
+    80% {opacity: 1;}
+    100% {opacity:0; bottom:342px; right:23.3%;}
+}
+.text-container6 {
+    position: absolute;
+    width: 400px; /* 텍스트 박스 크기 설정 */
+    height: 50px;
+    bottom: 10px;
+    left:20px;
+    overflow: hidden;
+    z-index: 10;
+}
+.text6 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* 그림자 추가 */
+    position: absolute;
+    width: 100%;
+    font-size: 16px;
+    text-align: center;
+    opacity: 0;
+    animation: textAnimation 9.6s infinite;
+    /*animation: textAnimation 4.8s infinite;*/
+}
+.text6:nth-child(1) { animation-delay: 0s; }
+.text6:nth-child(2) { animation-delay: 1.6s; }
+.text6:nth-child(3) { animation-delay: 3.2s; }
+.text6:nth-child(4) { animation-delay: 4.8s; }
+.text6:nth-child(5) { animation-delay: 6.4s; }
+.text6:nth-child(6) { animation-delay: 8s; }
+
+@keyframes textAnimation {
+    0% { opacity: 1; transform: scale(0);  color:black;}
+    16.67% { opacity: 1; transform: scale(1); color:white; }
+    33.33% { opacity: 0; transform: scale(0); color:black; }
+    100% { opacity: 1; transform: scale(0); }
+}
+
+
+
+/*---------------------------------------------7번 콘텐츠-------------------------------*/
+.skyy {
+    position:absolute;
+    top: 200px;
+    left:50%;
+    width:466px;
+    height:309px;
+    background: url("img/skyback.png");
+    transform:translate(-50%, -50%);
+    overflow: hidden;
+}
+.skyy_spark {
+    position: absolute;
+    top:0;
+    left:0;
+    width:466px;
+    height:309px;
+    background: url('img/skytwinkle.png') no-repeat;
+    background-size: cover;
+    animation: skyyMotion2 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+}
+.skyy_bubble {
+    position: absolute;
+    top:0;
+    left:0;
+    width:466px;
+    height:309px;
+    background: url('img/skycloud.png') no-repeat;
+    background-size: cover;
+    animation: skyyMotion 1s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+    z-index: 4;
+}
+.skyy_jelly {
+    position: absolute;
+    top:-20px;
+    left:-10px;
+    width:466px;
+    height:309px;
+    background: url('img/skycloud2.png') no-repeat;
+    background-size: cover;
+    animation: skyyMotion2 1s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+}
+.skyy_duck {
+    position: absolute;
+    top: 350px;
+    left: 200px;
+    width: 131px;
+    height: 164px;
+    background: url('img/skyduckk.png') no-repeat;
+    background-size: cover;
+    animation: skyyMotion 1.8s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 1.8s ease-in-out;
+    z-index: 2;
+}
+.skyy_duck2 {
+    position: absolute;
+    top: 300px;
+    left: 200px;
+    width: 131px;
+    height: 164px;
+    display:none;
+    background: url('img/skyduckk.png') no-repeat;
+    background-size: cover;
+    transition: transform 1.8s ease-in-out;
+    z-index:2;
+}
+/* 구름 외 애니메이션 */
+@keyframes skyyMotion {
+    0% {
+        transform: translateY(-30px);
+    }
+    50% {
+        transform: translateY(-40px); /* 위로 살짝 이동 */
+    }
+    100% {
+        transform: translateY(-30px); /* 원래 위치로 복귀 */
+    }
+}
+@keyframes skyyMotion2 {
+    0% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(20px); /* 위로 살짝 이동 */
+    }
+    100% {
+        transform: translateY(10px); /* 원래 위치로 복귀 */
+    }
+}
+@keyframes skyyMotion3 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* 위로 살짝 이동 */ translateX(10px);
+    }
+    100% {
+        transform: translateY(0); /* 원래 위치로 복귀 */
+    }
+}
+.butter1 {
+    position:absolute;
+
+    width:466px;
+    height:309px;
+    background:url('img/skybutter.png') no-repeat;
+    animation: butterMove1 3s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 3s ease; /* Opacity 변화 애니메이션 */
+}
+.butter1:hover {
+    /*transform: scale(1.1); !* 살짝 확대 *!*/
+    filter: brightness(0.7); /* 색상 어두워짐 (밝기 70%로 조정) */
+    transition: transform 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    cursor: pointer;
+}
+@keyframes butterMove1 {
+    0% {top : -50px; left:100px;
+        transform: rotate(0deg); /* 초기 회전값 */
+    }
+    70% {top : -20px; left:120px;
+        transform: rotate(15deg); /* 중간 회전값 */
+    }
+    100% { top : 10px; left:80px;
+        transform: rotate(-15deg); /* 마지막 회전값 */
+    }
+}
+
+
+
+/*---------------------------------------------8번 콘텐츠-------------------------------*/
+.sea {
+    position:absolute;
+    top: 200px;
+    left:50%;
+    width:451px;
+    height:301px;
+    background: url("img/swim_sea.png");
+    transform:translate(-50%, -50%);
+}
+
+
+.swim_spark {
+    position: absolute;
+    top:0;
+    left:0;
+    width:451px;
+    height:301px;
+    background: url('img/swim_spark.png') no-repeat;
+    background-size: cover;
+    animation: swimMotion2 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+}
+.swim_bubble {
+    position: absolute;
+    top:0;
+    left:0;
+    width:451px;
+    height:301px;
+    background: url('img/swim_bubble.png') no-repeat;
+    background-size: cover;
+    animation: swimMotion 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+}
+.swim_jelly {
+    position: absolute;
+    top:-20px;
+    left:-10px;
+    width:465px;
+    height:308px;
+    background: url('img/swim_jelly.png') no-repeat;
+    background-size: cover;
+    animation: swimMotion2 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+}
+.swim_pado {
+    position: absolute;
+    top:-2px;
+    left:-10px;
+    width:465px;
+    height:308px;
+    background: url('img/swim_pado.png') no-repeat;
+    background-size: cover;
+    animation: swimMotion3 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
+}
+
+.swim_duck {
+    position: absolute;
+    bottom: 100px;
+    left: 200px;
+    width: 250px;
+    height: 160px;
+    background: url('img/swimmingduck.png') no-repeat;
+    background-size: cover;
+    animation: swimMotion 2s ease-in-out infinite; /* 애니메이션 추가 */
+    transition: transform 0.5s ease-in-out;
+    z-index: 2;
+}
+.swim_duck2 {
+    position: absolute;
+    bottom: 100px;
+    left: 200px;
+    width: 250px;
+    height: 160px;
+    display:none;
+    background: url('img/swimmingduck.png') no-repeat;
+    background-size: cover;
+    transition: transform 0.5s ease-in-out;
+    z-index:2;
+}
+.swim_duck3 {
+    position: absolute;
+    bottom: 100px;
+    left: 200px;
+    width: 250px;
+    height: 160px;
+    display:none;
+    background: url('img/swimmingduck.png') no-repeat;
+    background-size: cover;
+    transition: transform 0.5s ease-in-out;
+    z-index:2;
+}
+
+.swim_duck4 {
+    position: absolute;
+    bottom: 100px;
+    left: 200px;
+    width: 250px;
+    height: 160px;
+    display:none;
+    background: url('img/swimmingduck.png') no-repeat;
+    background-size: cover;
+    transition: transform 0.5s ease-in-out;
+    z-index:2;
+}
+
+.swim_duck5 {
+    position: absolute;
+    bottom: 100px;
+    left: 200px;
+    width: 250px;
+    height: 160px;
+    display:none;
+    background: url('img/swimmingduck.png') no-repeat;
+    background-size: cover;
+    transition: transform 0.5s ease-in-out;
+    z-index:2;
+}
+
+/* 오리 애니메이션 */
+@keyframes swimMotion {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px); /* 위로 살짝 이동 */
+    }
+    100% {
+        transform: translateY(0); /* 원래 위치로 복귀 */
+    }
+}
+@keyframes swimMotion2 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px); /* 위로 살짝 이동 */
+    }
+    100% {
+        transform: translateY(0); /* 원래 위치로 복귀 */
+    }
+}
+@keyframes swimMotion3 {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px); /* 위로 살짝 이동 */ translateX(10px);
+    }
+    100% {
+        transform: translateY(0); /* 원래 위치로 복귀 */
+    }
+}
+
+
+
+
+.fish1 {
+    position:absolute;
+    bottom:10px;
+    /*left:calc((500px - 160px) / 2);*/
+    left:150px;
+    width:120px;
+    height:120px;
+    background:url('img/swim_fish1.png') no-repeat;
+    animation: fishMove1 .5s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 2s ease-in; /* Opacity 변화 애니메이션 */
+}
+.fish1:hover {
+    /*transform: scale(1.1); !* 살짝 확대 *!*/
+    filter: brightness(0.7); /* 색상 어두워짐 (밝기 70%로 조정) */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer;
+}
+@keyframes fishMove1 {
+    0% {left : 60px;}
+    100% { left : 70px;}
+}
+
+.fish1_2 {
+    position:absolute;
+    bottom:150px;
+    /*left:calc((500px - 160px) / 2);*/
+    left:100px;
+    width:60px;
+    height:80px;
+    background:url('img/swim_fish2.png') no-repeat;
+    animation: fishMove2 .5s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 2s ease-in; /* Opacity 변화 애니메이션 */
+}
+.fish1_2:hover {
+    /*transform: scale(1.1); !* 살짝 확대 *!*/
+    filter: brightness(0.7); /* 색상 어두워짐 (밝기 70%로 조정) */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer;
+}
+@keyframes fishMove2 {
+    0% {left : 150px;}
+    100% { left : 140px;}
+}
+
+.fish1_3 {
+    position:absolute;
+    bottom:210px;
+    /*left:calc((500px - 160px) / 2);*/
+    left:170px;
+    width:48px;
+    height:37px;
+    background:url('img/swim_fiish3.png') no-repeat;
+    animation: fishMove3 .5s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 2s ease-in; /* Opacity 변화 애니메이션 */
+}
+.fish1_3:hover {
+    /*transform: scale(1.1); !* 살짝 확대 *!*/
+    filter: brightness(0.7); /* 색상 어두워짐 (밝기 70%로 조정) */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer;
+}
+@keyframes fishMove3 {
+    0% {left : 40px;}
+    100% { left : 55px;}
+}
+
+.fish1_4 {
+    position:absolute;
+    bottom:120px;
+    /*left:calc((500px - 160px) / 2);*/
+    left:70px;
+    width:66px;
+    height:54px;
+    background:url('img/swim_fish4.png') no-repeat;
+    animation: fishMove4 .5s cubic-bezier(0.7, 0.07, 0, 1.02) infinite alternate;
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 2s ease-in; /* Opacity 변화 애니메이션 */
+}
+.fish1_4:hover {
+    /*transform: scale(1.1); !* 살짝 확대 *!*/
+    filter: brightness(0.7); /* 색상 어두워짐 (밝기 70%로 조정) */
+    transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+    cursor: pointer;
+}
+@keyframes fishMove4 {
+    0% {left : 35px;}
+    100% { left : 20px;}
+}
+
+
+/*---------------------------------------------9번 콘텐츠-------------------------------*/
+.dsky {
+    position:absolute;
+    top: 200px;
+    left:50%;
+    width:451px;
+    height:301px;
+    background: darkseagreen;
+    transform:translate(-50%, -50%);
+    overflow: hidden;
+}
+/*몸*/
+#container3d {
+    position:absolute;
+    top: 200px;
+    left:50%;
+    width:1001px;
+    height:301px;
+    /*border: 1px solid #000;*/
+    transform:translate(-50%, -50%);
+    perspective: 300px;
+    transform-style: preserve-3d;
+    overflow:hidden;
+}
+
+.box0 {
+    position: absolute;
+    top:0;
+    left:50%;
+    width:75px;
+    height:75px;
+    margin-top: 150px;
+    margin-left:-150px;
+    background: rgb(243,211,88); /* 노랑 */
+}
+.back0 {
+    background: rgb(243,211,88); /* 노랑 */
+    transform:translateZ(-37.5px);
+}
+
+.front0 {
+    background: rgb(243,211,88); /* 노랑 */
+    transform:translateZ(+37.5px);
+}
+
+.bottom0 {
+    background: #F38F58; /* 노랑 */
+    transform:rotateX(90deg) translateZ(-37.5px);
+}
+
+.top0 {
+    background: rgb(243,211,88); /* 노랑 */
+    transform:rotateX(90deg) translateZ(+37.5px);
+}
+
+.left0 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(-37.5px);
+}
+
+.right0 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(+37.5px);
+}
+
+.container0 {
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+
+
+/*머리*/
+.box13 {
+    position: absolute;
+    top:5px;
+    left:50%;
+    width:50px;
+    height:50px;
+    margin-top: 100px;
+    margin-left:-100px;
+    background:#F3D358;
+    color:#fff;
+}
+.back13 {
+    background:#F3D358;
+    transform:translateZ(-25px);
+}
+
+.front13 {
+    background:#F3D358;
+
+    /*background: rgba(0, 255, 247, .5);*/
+    transform:translateZ(25px);
+}
+
+.bottom13 {
+    background:#F38F58;
+
+    /*background: rgba(255, 204, 0, .5);*/
+    transform:rotateX(90deg) translateZ(-25px);
+}
+
+.top13 {
+    background:#F3D358;
+
+    /*background: rgba(8, 255, 0, .5);*/
+    transform:rotateX(90deg) translateZ(25px);
+}
+
+.left13 {
+    background:#F3D358;
+
+    /*background: rgba(255, 106, 0, .5);*/
+    transform:rotateY(90deg) translateZ(-25px);
+}
+
+.right13 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(25px);
+}
+
+.container13 {
+
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+@keyframes rotate12 {
+
+    0%{transform:rotateY(0deg)rotateX(-40deg);}
+    20%{transform:rotateY(-90deg) rotateX(20deg);}
+    50%{transform:rotateY(-90deg) rotateX(-10deg) rotateZ(30deg);}
+    80%{transform:rotateY(-90deg) rotateZ(-20deg); }
+    /*20%{transform:rotateY(-90deg) rotateX(40deg);}*/
+    100%{transform:rotateY(-90deg);}
+}
+
+
+
+/*아랫부리*/
+.box2 {
+    display:flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    position: absolute;
+    top:40px;
+    left:50%;
+    margin-top: 100px;
+    margin-left:-50px;
+    background:rgb(182,82,61);
+    color:#fff;
+}
+.back2 {
+
+    background:rgb(223,120,87);
+    transform:translateZ(-10px);
+
+    width:20px;
+    height:10px;
+
+}
+
+.front2 {
+    background:rgb(223,120,87);
+    transform:translateZ(10px);
+
+    width:20px;
+    height:10px;
+
+}
+
+.bottom2 {
+    background:rgb(182,82,61);
+    transform:rotateX(90deg) translateZ(-0px);
+
+    width:20px;
+    height:20px;
+
+}
+
+.top2 {
+    background:rgb(182,82,61);
+    transform:rotateX(90deg) translateZ(10px);
+
+    width:20px;
+    height:20px;
+
+}
+
+.left2 {
+    background:rgb(223,120,87);
+    transform:rotateY(90deg) translateZ(-10px);
+
+    width:20px;
+    height:10px;
+}
+
+.right2 {
+    background:rgb(223,120,87);
+    transform:rotateY(90deg) translateZ(10px);
+
+    width:20px;
+    height:10px;
+
+}
+
+.container2 {
+    /*
+    perspective: 600px;
+    */
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+
+/*윗부리*/
+.box3 {
+    display:flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    position: absolute;
+    top:28px;
+    left:50%;
+    margin-top: 100px;
+    margin-left:-50px;
+    background:rgb(223,120,87);
+    color:#fff;
+}
+.back3 {
+    background:rgb(223,120,87);
+    transform:translateZ(-10px);
+
+    width:20px;
+    height:10px;
+
+}
+
+.front3 {
+    background:rgb(223,120,87);
+    transform:translateZ(10px);
+
+    width:20px;
+    height:10px;
+
+}
+
+.bottom3 {
+    background:rgb(182,82,61);
+    transform:rotateX(90deg) translateZ(-0px);
+
+    width:20px;
+    height:20px;
+
+}
+
+.top3 {
+    background:rgb(223,120,87);
+    transform:rotateX(90deg) translateZ(10px);
+
+    width:20px;
+    height:20px;
+
+}
+
+.left3 {
+    background:rgb(223,120,87);
+    transform:rotateY(90deg) translateZ(-10px);
+
+    width:20px;
+    height:10px;
+}
+
+.right3 {
+    background:rgb(223,120,87);
+    transform:rotateY(90deg) translateZ(10px);
+
+    width:20px;
+    height:10px;
+
+}
+
+.container3 {
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+
+
+/*날개1*/
+.box4 {
+    display:flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    position: absolute;
+    top:40px;
+    left:50%;
+    margin-top: 120px;
+    margin-left:-130px;
+    background:rgba(0, 0, 0, .3);
+    color:#fff;
+}
+.back4 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:translateZ(-20px) translateZ(55px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.front4 {
+    background: rgb(243,211,88); /* 노랑 */
+    transform:translateZ(20px) translateZ(55px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.bottom4 {
+    background:#F38F58;
+    transform:rotateX(90deg) translateZ(-0px) translateY(55px);
+
+    width:40px;
+    height:40px;
+
+}
+
+.top4 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateX(90deg) translateZ(20px) translateY(55px);
+
+    width:40px;
+    height:40px;
+
+}
+
+.left4 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(-20px) translateX(-55px);
+
+    width:40px;
+    height:20px;
+}
+
+.right4 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(20px) translateX(-55px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.container4 {
+    /*
+    perspective: 600px;
+    */
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+/*날개2*/
+.box5 {
+    display:flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    position: absolute;
+    top:40px;
+    left:50%;
+    margin-top: 120px;
+    margin-left:-130px;
+    background: rgb(243,186,88); /* 노랑 */
+    color:#fff;
+}
+.back5 {
+    background: rgb(243,211,88); /* 노랑 */
+    transform:translateZ(-20px) translateZ(-55px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.front5 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:translateZ(20px) translateZ(-55px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.bottom5 {
+    background:#F38F58;
+    transform:rotateX(90deg) translateZ(-0px) translateY(-55px);
+
+    width:40px;
+    height:40px;
+
+}
+
+.top5 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateX(90deg) translateZ(20px) translateY(-55px);
+
+    width:40px;
+    height:40px;
+
+}
+
+.left5 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(-20px) translateX(55px);
+
+    width:40px;
+    height:20px;
+}
+
+.right5 {
+    background: rgb(243,186,88); /* 노랑 */
+    transform:rotateY(90deg) translateZ(20px) translateX(55px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.container5 {
+    /*
+    perspective: 600px;
+    */
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+/*발1*/
+.box6 {
+    display:flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    position: absolute;
+    top:40px;
+    left:55%;
+    margin-top: 180px;
+    margin-left:-130px;
+    /* -120px */
+    background: #DF7857;
+    color:#fff;
+}
+.back6 {
+    background: #DF7857;
+    transform:translateZ(-10px) translateZ(-25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.front6 {
+    background:rgb(182,82,61);
+    transform:translateZ(10px) translateZ(-25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.bottom6 {
+    background:rgb(182,82,61);
+    transform:rotateX(90deg) translateZ(-10px) translateY(-25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.top6 {
+    background: #DF7857;
+    transform:rotateX(90deg) translateZ(10px) translateY(-25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.left6 {
+    background:rgb(182,82,61);
+    transform:rotateY(90deg) translateZ(-10px) translateX(25px);
+
+    width:20px;
+    height:20px;
+}
+
+.right6 {
+    background: #DF7857;
+    transform:rotateY(90deg) translateZ(30px) translateX(25px);
+
+    width:20px;
+    height:20px;
+
+}
+
+.container6 {
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+/*발2*/
+.box7 {
+    display:flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    position: absolute;
+    top:40px;
+    left:55%;
+    margin-top: 180px;
+    margin-left:-130px;
+    /* -120px */
+    background:rgba(0, 0, 0, .3);
+    color:#fff;
+}
+.back7 {
+    background:rgb(182,82,61);
+    transform:translateZ(-10px) translateZ(25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.front7 {
+    background: #DF7857;
+    transform:translateZ(10px) translateZ(25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.bottom7 {
+    background:rgb(182,82,61);
+    transform:rotateX(90deg) translateZ(-10px) translateY(25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.top7 {
+    background: #DF7857;
+    transform:rotateX(90deg) translateZ(10px) translateY(25px);
+
+    width:40px;
+    height:20px;
+
+}
+
+.left7 {
+    background:rgb(182,82,61);
+    transform:rotateY(90deg) translateZ(-10px) translateX(-25px);
+
+    width:20px;
+    height:20px;
+}
+
+.right7 {
+    background: #DF7857;
+    transform:rotateY(90deg) translateZ(30px) translateX(-25px);
+
+    width:20px;
+    height:20px;
+
+}
+
+.container7 {
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+/*눈1*/
+.box8 {
+    position: absolute;
+    top:5px;
+    left:50%;
+    width:10px;
+    height:10px;
+    margin-top: 120px;
+    margin-left:-80px;
+    background:#534741;
+    color:#fff;
+}
+.back8 {
+    background:#534741;
+
+    transform:translateZ(-5px) translateZ(-25px);
+}
+
+.front8 {
+    background:#534741;
+    transform:translateZ(5px) translateZ(-25px);
+}
+
+.bottom8 {
+    background:#534741;
+    transform:rotateX(90deg) translateZ(-5px) translateY(-25px);
+}
+
+.top8 {
+    background:#534741;
+    transform:rotateX(90deg) translateZ(5px) translateY(-25px);
+}
+
+.left8 {
+    background:#534741;
+    transform:rotateY(90deg) translateZ(-5px) translateX(25px);
+}
+
+.right8 {
+    background:#534741;
+    transform:rotateY(90deg) translateZ(5px) translateX(25px);
+}
+
+.container8 {
+
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
+
+/* 눈2 */
+.box9 {
+    position: absolute;
+    top:5px;
+    left:50%;
+    width:10px;
+    height:10px;
+    margin-top: 120px;
+    margin-left:-80px;
+    background:black;
+    color:#fff;
+}
+.back9 {
+    background:#534741;
+    transform:translateZ(-5px) translateZ(25px);
+}
+
+.front9 {
+    background:#534741;
+    transform:translateZ(5px) translateZ(25px);
+}
+
+.bottom9 {
+    background:#534741;
+    transform:rotateX(90deg) translateZ(-5px) translateY(25px);
+}
+
+.top9 {
+    background:#534741;
+    transform:rotateX(90deg) translateZ(5px) translateY(25px);
+}
+
+.left9 {
+    background:#534741;
+    transform:rotateY(90deg) translateZ(-5px) translateX(-25px);
+}
+
+.right9 {
+    background:#534741;
+    transform:rotateY(90deg) translateZ(5px) translateX(-25px);
+}
+
+.container9 {
+
+    transform-style:preserve-3d;
+    animation:rotate12 7s infinite alternate;
+}
